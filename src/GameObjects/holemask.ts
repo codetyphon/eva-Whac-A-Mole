@@ -1,10 +1,9 @@
-import { Scene } from '@eva/eva.js';
 import { GameObject } from '@eva/eva.js';
-import { Physics, PhysicsType } from '@eva/plugin-matterjs';
 import { Img } from '@eva/plugin-renderer-img';
 import { GAME_SIZE } from '../CONST';
-import { Text } from '@eva/plugin-renderer-text'
-
+import {
+    Event,
+} from '@eva/plugin-renderer-event';
 
 const HoleMask = () => {
     const holeMask = new GameObject("holeMask", {
@@ -32,6 +31,11 @@ const HoleMask = () => {
             resource: "holeMask"
         })
     );
+
+    const evt = holeMask.addComponent(new Event())
+    evt.on('tap', e => {
+        e.stopPropagation()
+    })
 
     return holeMask;
 }
